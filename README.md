@@ -19,7 +19,7 @@ Movie recommendation systems are made using two main methodologies:
 •	Content-Based Filtering: Provides recommendations based on the attributes of a movie
 •	Collaborative Based Filtering: Provides recommendations based on the preferences of other users
 
-**Objectives of the current study: **
+**Objectives of current study**
 •	The main aim of this research is to understand which genre of movies or which specific movies perform well at different times of the year based on seasonality. 
 •	This will help suggest those specific movies to the users providing them user-specific recommendations
 •	This will also help the service providers interpret how to run their campaigns and advertisements at different times of the year which customer base, improve customer retention, and also increase the revenue generation for service providers
