@@ -1,5 +1,6 @@
 # Movie-Recommendation-Systems
 Movie Recommendation Systems Using Time Series Analysis:
+
 **Introduction:**
 In today's world, movie recommendation systems can benefit both the users and the service providers. It helps in enhancing the user experience and engagement, helps in content discovery, generates data and insights, and helps in user retention.
 Time series can help us understand the trends and seasonality of the different types of movies around the year. Utilization of Time Series models to predict the ratings of movies in the future helps to understand how different movies and genres will perform at different intervals of time
