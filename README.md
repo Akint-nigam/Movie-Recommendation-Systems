@@ -1,4 +1,4 @@
-# Movie-Recommendation-Systems
+# Movie Recommendation Systems
 Movie Recommendation Systems Using Time Series Analysis:
 
 **Introduction:**
