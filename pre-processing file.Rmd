@@ -1,0 +1,77 @@
+```{r, echo=FALSE}
+movie_data <- read.csv("C:\\Users\\Hp\\Downloads\\movies_data.csv")
+movie_data$timestamp<- substr(movie_data$timestamp,1,7)
+#movie_data <- movie_data[1:100, ]
+movie_data <- movie_data[, -2]
+```
+
+```{r for loop, echo=FALSE}
+time_list <- unique(movie_data$timestamp)
+m_list <- list()
+d_list <- list()
+r_list <- list()
+
+library(progress)
+total_iterations <- nrow(movie_data)
+pb <- progress_bar$new(total = total_iterations, format = "[:bar] :percent :eta")
+for (i in 1:total_iterations) {
+  pb$tick()  # Increment the progress bar
+
+for(date_movie in time_list){
+  movies_on_date <- movie_data$timestamp == date_movie
+  unique_movies <- unique(movie_data$title[movies_on_date])
+  
+  for(moviee in unique_movies){
+    ratingss <- movie_data$rating[movie_data$title == moviee & movie_data$timestamp == date_movie]
+    avg_rating <- mean(ratingss)
+    
+    m_list <- append(m_list,moviee)
+    d_list <- append(d_list,date_movie)
+    r_list <- append(r_list, avg_rating)
+  }
+  
+}}
+
+```
+```{r lapply}
+# Create empty lists
+m_list <- list()
+d_list <- list()
+r_list <- list()
+
+library(progress)
+total_iterations <- nrow(movie_data)
+pb <- progress_bar$new(total = total_iterations, format = "[:bar] :percent :eta")
+for (i in 1:total_iterations) {
+  pb$tick()
+  
+# Apply function to each unique date
+lapply(unique(movie_data$timestamp), function(date_movie) {
+  movies_on_date <- movie_data$timestamp == date_movie
+  unique_movies <- unique(movie_data$title[movies_on_date])
+
+  # Apply function to each unique movie on the current date
+  lapply(unique_movies, function(moviee) {
+    ratingss <- movie_data$rating[movie_data$title == moviee & movie_data$timestamp == date_movie]
+    avg_rating <- mean(ratingss)
+
+    # Append values to lists
+    m_list <<- append(m_list, moviee)
+    d_list <<- append(d_list, date_movie)
+    r_list <<- append(r_list, avg_rating)
+  })
+})
+}
+```
+
+
+```{r Final dataframe}
+m_list <- unlist(m_list)
+d_list <- unlist(d_list)
+r_list <- unlist(r_list)
+movie_df <- data.frame(Movie = m_list, Date = d_list, Rating = r_list)
+#movie_df$Date <- substr(movie_df$Date, 1,7)
+library(zoo)
+movie_df$Date <- as.yearmon(movie_df$Date, format = "%Y-%m")
+#movie_df$Date <- as.Date(movie_df$Date)
+```
